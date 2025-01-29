@@ -1,0 +1,23 @@
+services:
+  # set up the broker
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      # expose the port for the worker to get/add tasks
+      - 5672:5672
+      # expose the port for the GUI
+      - 15672:15672
+    container_name: rabbitmq-broker
+  # set up flower GUI to monitor and manage celery worker and tasks
+  flower:
+    image: mher/flower
+    container_name: flower
+    command: celery flower
+    working_dir: /data
+    ports:
+      - 5555:5555
+    environment:
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+      CELERY_RESULT_BACKEND: rpc://
+    depends_on:
+      - rabbitmq
