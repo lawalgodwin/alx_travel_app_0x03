@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+
 import environ
 import os
 
@@ -18,12 +19,10 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -33,8 +32,7 @@ SECRET_KEY = 'django-insecure-e3&jjg+*t+bu1tt)^9(q4i6u%uj!k4n^phrc!2()bm0ly%5+ju
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["booking-systems.onrender.com", "localhost"]
-
+ALLOWED_HOSTS = ["booking-systems.onrender.com", "localhost", "127.0.0.1", "*"]
 
 # Application definition
 
@@ -138,10 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Celery using RabbitMQ as the message broker
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
-
+CELERY_BROKER_URL = env("CELERY_BROKER_URL") or "redis://127.0.0.1:6379/0"
  #Results  backend (optional, but recommended for montoring)
-CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND") or "redis://127.0.0.1:6379/0"
 
 CELERY_WORKER_POOL = 'solo'
 
@@ -200,6 +197,9 @@ REDOC_SETTINGS = {
     'EXPAND_RESPONSES': 'all',
     'PATH_IN_MIDDLE': False,
 }
+
+CHAPA_SECRET_KEY = (env('CHAPA_SECRET_KEY'))
+CHAPA_WEBHOOK_SECRET = env("CHAPA_WEBHOOK_SECRET")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'

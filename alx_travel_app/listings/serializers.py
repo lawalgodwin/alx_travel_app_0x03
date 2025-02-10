@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from .models import Listing, Booking
+from .models import Listing, Booking, Payment
 
 
 class ListingSerializer(serializers.ModelSerializer):
@@ -32,3 +32,11 @@ class BookingSerializer(serializers.ModelSerializer):
         representation["guest"] = instance.guest.email
         representation["property"] = instance.property_id
         return representation
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    """Booking serializer"""
+
+    class Meta:
+        model = Payment
+        fields = "__all__"

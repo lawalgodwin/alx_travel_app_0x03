@@ -6,7 +6,6 @@ router = DefaultRouter(trailing_slash=False)
 router.register(r"listings", viewset=ListingViewSet)
 router.register(r"bookings", viewset=BookingViewSet)
 
-
 urlpatterns = [
     path("", include(router.urls))
 ]
