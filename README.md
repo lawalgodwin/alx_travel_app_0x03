@@ -87,7 +87,7 @@
     git clone https://github.com/lawalgodwin/alx_travel_app_0x03.git && cd alx_travel_app_0x03
 ```
 ```bash
-    # Navigate into the project Directory
+    # Navigate into the project Directory to install dependencies and prepare the database(sqlite3)
     cd alx_travel_app && pip install -r requirements.txt && ./manage.py makemigrations && ./manage.py migrate
 ```
 ## How to run the project
@@ -95,7 +95,7 @@
     # in the same project directory, run the command below to start the api
     ./manage.py runserver 0.0.0.0:8000
 ```
-## start the background worker
+## Start the background worker
 ```bash
     # in the same project directory but from another terminer, start the celery worker
     watchfiles --filter python 'celery -A alx_travel_app worker -l info'
