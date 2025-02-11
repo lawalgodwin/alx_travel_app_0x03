@@ -68,8 +68,6 @@
     ├── manage.py
     └── requirements.txt
 
-    ## Getting Started
-
 ## Prerequisites
 
 - Python 3.x
