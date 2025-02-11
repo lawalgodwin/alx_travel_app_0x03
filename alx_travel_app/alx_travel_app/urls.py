@@ -42,6 +42,6 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('api/', include(listings.urls), name="listings-bookings"),
-    path('transaction/initialize/<uuid:pk>', PaymentInitializationView.as_view(), name="payment-init"),
+    path('transaction/initialize/<uuid:booking_id>', PaymentInitializationView.as_view(), name="payment-init"),
     path('webhook/payment/', ChapaWebhookView.as_view(), name="webhook"),
 ]

@@ -28,12 +28,12 @@ class PaymentInitializationView(APIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
 
-    def post(self, request, pk):
+    def post(self, request, booking_id):
         # get booking details from the request object
         booking = None
         total_price = 0
         try:
-            booking = get_object_or_404(Booking, pk=pk)
+            booking = get_object_or_404(Booking, pk=booking_id)
             number_of_nights = (booking.end_date - booking.start_date).days
             total_price = number_of_nights * booking.property.price_per_night
         except Http404 as e:
