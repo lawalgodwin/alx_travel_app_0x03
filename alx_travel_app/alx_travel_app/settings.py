@@ -33,7 +33,6 @@ SECRET_KEY = 'django-insecure-e3&jjg+*t+bu1tt)^9(q4i6u%uj!k4n^phrc!2()bm0ly%5+ju
 DEBUG = True
 
 ALLOWED_HOSTS = list(env("ALLOWED_HOSTS").split(","))
-print(ALLOWED_HOSTS)
 
 # Application definition
 
