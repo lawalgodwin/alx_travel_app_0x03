@@ -32,7 +32,8 @@ SECRET_KEY = 'django-insecure-e3&jjg+*t+bu1tt)^9(q4i6u%uj!k4n^phrc!2()bm0ly%5+ju
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = list(env("CHAPA_WEBHOOK_SECRET"))
+ALLOWED_HOSTS = list(env("ALLOWED_HOSTS").split(","))
+print(ALLOWED_HOSTS)
 
 # Application definition
 
